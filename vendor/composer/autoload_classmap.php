@@ -9,7 +9,7 @@ return array(
     'ComposerAutoloaderInit4a3d3731011d0ef0f6f621105cb8b6b5' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5' => $vendorDir . '/composer/autoload_static.php',
-    'Database' => $baseDir . '/application/database.class.php',
+    'Database' => $baseDir . '/application/database_exception.class.php',
     'Dispatcher' => $baseDir . '/application/dispatcher.class.php',
     'Index' => $baseDir . '/views/index/index.class.php',
     'IndexView' => $baseDir . '/views/indexView.class.php',

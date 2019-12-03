@@ -21,7 +21,7 @@ class UserModel {
     //the users table in the usersystem database.
     public function transaction($user_id, $account_type, $amount){
         //add transaction to database
-        $sql = "INSERT INTO users(user_id, account_type, amount) VALUES (" .$user_id.", " .$account_type.", ".$amount.")";
+        $sql = "INSERT INTO transactions(user_id, account_type, amount) VALUES (" .$user_id.", " .$account_type.", ".$amount.")";
 
         //execute the query
         if ($this->dbConnection->query($sql) === TRUE) {
