@@ -8,8 +8,8 @@
 
 class TransactionIndexView extends IndexView {
 
-    public static function displayHeader($title) {
-        parent::displayHeader($title)
+    public static function header($title) {
+        parent::header($title)
         ?>
         <!--create the search bar -->
         <div id="searchbar">
@@ -22,8 +22,8 @@ class TransactionIndexView extends IndexView {
         <?php
     }
 
-    public static function displayFooter() {
-        parent::displayFooter();
+    public static function footer() {
+        parent::footer();
     }
 
 }

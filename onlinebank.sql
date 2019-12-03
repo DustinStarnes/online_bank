@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2019 at 04:11 PM
+-- Generation Time: Dec 03, 2019 at 05:30 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -30,10 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `transactions` (
   `id` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
   `user_id` int(20) NOT NULL,
   `account_type` varchar(20) NOT NULL,
-  `amount` decimal(10,2) NOT NULL
+  `amount` decimal(10,2) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `title`, `user_id`, `account_type`, `amount`, `date`) VALUES
+(1, '', 1, 'Savings', '100.00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -49,6 +58,13 @@ CREATE TABLE `users` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`) VALUES
+(1, 'user', 'password', 'email@email.com', 'name', 'name');
 
 --
 -- Indexes for dumped tables
@@ -74,13 +90,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

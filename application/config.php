@@ -15,19 +15,5 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/New_York');
 
 //base url of the application
-define("BASE_URL", "http://localhost/I211/Lab09");
+define("BASE_URL", "http://localhost/I211/online_bank");
 
-/*************************************************************************************
- *                       settings for movies                                         *
- ************************************************************************************/
-
-//define default path for media images
-define("MOVIE_IMG", "www/img/movies/");
-
-
-/*************************************************************************************
- *                       settings for books                                         *
- ************************************************************************************/
-
-//define default path for media images
-define("BOOK_IMG", "www/img/books/");

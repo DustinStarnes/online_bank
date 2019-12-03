@@ -13,24 +13,35 @@ class TransactionIndex extends TransactionIndexView {
 
     public function display($transactions) {
         //display page header
-        parent::displayHeader("List All Transactions");
+        parent::header("List All Transactions");
         ?>
         <div id="main-header"> Transactions for user</div>
 
-        <div class="grid-container">
+        <table class="table-container">
+            <thead>
+
+            </thead>
+            <tbody>
             <?php
             if ($transactions === 0) {
                 echo "No transaction was found.<br><br><br><br><br>";
             } else {
-                //display transactions in a grid; six transactions per row
+                //display transactions six transactions per row
                 foreach ($transactions as $i => $transaction) {
                     $id = $transaction->getId();
+                    $title = $transaction->getTitle();
                     $amount = $transaction->getAmount();
                     $account_type = $transaction->getAccountType();
+                    $date = $transaction->getDate();
 
 
-                    echo "<div class='col'><p><a href='", BASE_URL, "/transaction/detail/$id'> 
-                    <span>Amount: $amount<br>Account: $account_type</span></p></a></div>";
+                    echo "<tr>
+                        <td>$title</td>
+                        <td>$amount</td>
+                        <td>$account_type</td>
+                        <td>$date</td>
+                        <td><a href='", BASE_URL, "/transaction/edit/$id'>Edit</a></td>
+                        </tr>";
                     ?>
                     <?php
                     if ($i % 6 == 5 || $i == count($transactions) - 1) {
@@ -39,10 +50,11 @@ class TransactionIndex extends TransactionIndexView {
                 }
             }
             ?>
-        </div>
+            </tbody>
+        </table>
 
         <?php
         //display page footer
-        parent::displayFooter();
+        parent::footer();
     } //end of display method
 }

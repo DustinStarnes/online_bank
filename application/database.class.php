@@ -15,8 +15,9 @@ class Database {
         'host' => 'localhost',
         'login' => 'phpuser',
         'password' => 'phpuser',
-        'database' => 'usersystem',
-        'tblUser' => 'onlinebank'
+        'database' => 'onlinebank',
+        'user' => 'user',
+        'transaction' => 'transaction'
     );
     //define the database connection object
     private $objDBConnection = NULL;

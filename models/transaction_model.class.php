@@ -6,7 +6,7 @@
 * Description:
 */
 
-class UserModel {
+class TransactionModel {
     private $db;
     private $dbConnection;
 
@@ -19,7 +19,7 @@ class UserModel {
 
     // retrieve user details from the registration form and then add them into
     //the users table in the usersystem database.
-    public function transaction($user_id, $account_type, $amount){
+    public function addTransaction($user_id, $account_type, $amount){
         //add transaction to database
         $sql = "INSERT INTO transactions(user_id, account_type, amount) VALUES (" .$user_id.", " .$account_type.", ".$amount.")";
 
@@ -32,6 +32,47 @@ class UserModel {
             return false;
         }
 
+    }
+
+    public function list_transactions() {
+        /* construct the sql SELECT statement in this format
+         * SELECT ...
+         * FROM ...
+         * WHERE ...
+         */
+
+        //$user= $_COOKIE['user'];
+        $user= 1;
+
+        $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
+
+        //execute the query
+        $query = $this->dbConnection->query($sql);
+
+        // if the query failed, return false.
+        if (!$query){
+            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+            return false;
+        }
+
+        //if the query succeeded, but no transaction was found.
+        if ($query->num_rows == 0) {
+            echo "Error: No Transaction found: " . $sql . "<br>" . $this->dbConnection->error;
+            return 0;
+        }
+
+        //handle the result
+        //create an array to store all returned movies
+        $transactions = array();
+
+        //loop through all rows in the returned recordsets
+        while ($obj = $query->fetch_object()) {
+            $transaction = new Transaction(stripslashes($obj->id), stripslashes($obj->title), stripslashes($obj->amount), stripslashes($obj->account_type), stripslashes($obj->date));
+
+            //add the transaction into the array
+            $transactions[] = $transaction;
+        }
+        return $transactions;
     }
 
     //find total for a user's account
