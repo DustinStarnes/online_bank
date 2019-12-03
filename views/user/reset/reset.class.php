@@ -21,7 +21,7 @@ class Reset extends IndexView
         <!-- middle row of page header -->
         <div class="middle-row">
         <p>Reset your password</p>
-        <form action="index.php?action=registered" method="post">
+        <form action="../../../index.php" method="post">
 
         <input type="username" name="Username" value="<?php echo $_COOKIE['username'] ?>" readonly /><br />
         <input type="password" name="Password" placeholder="Create new password." />
@@ -30,7 +30,7 @@ class Reset extends IndexView
 
 
         <div class="bottom-row">
-            <span style="float: left">Cancel password reset? <a href="index.php?action=login">Cancel Reset</a></span>
+            <span style="float: left">Cancel password reset? <a href="../../../index.php">Cancel Reset</a></span>
             <span style="float: right"></span>
         </div>
         <?php

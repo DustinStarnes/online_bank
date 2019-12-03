@@ -33,8 +33,8 @@ class ResetConfirmed extends IndexView
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Want to log out? <a href="index.php?action=logout">Logout</a></span>
-            <span style="float: right">Don't have an account? <a href="index.php">Register</a></span>
+            <span style="float: left">Want to log out? <a href="../../../index.php">Logout</a></span>
+            <span style="float: right">Don't have an account? <a href="../../../index.php">Register</a></span>
         </div>
         <?php
 
