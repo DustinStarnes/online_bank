@@ -22,6 +22,6 @@ return array(
     'TransactionIndexView' => $baseDir . '/views/transaction/transaction_index_view.class.php',
     'TransactionModel' => $baseDir . '/models/transaction_model.class.php',
     'UserController' => $baseDir . '/controllers/user_controller.class.php',
-    'user_model' => $baseDir . '/models/user_model.class.php',
+    'UserModel' => $baseDir . '/models/user_model.class.php',
     'users_class' => $baseDir . '/models/users.class.php',
 );

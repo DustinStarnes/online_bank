@@ -52,6 +52,6 @@ class Database {
 
     //returns the name of the table storing books
     public function getUserTable() {
-        return $this->param['tblUser'];
+        return $this->param['user'];
     }
 }

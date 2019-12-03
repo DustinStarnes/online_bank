@@ -18,7 +18,7 @@ class IndexView
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <title>Bank Online</title>
-            <link type="text/css" rel="stylesheet" href="css/styles.css" />
+            <link type="text/css" rel="stylesheet" href="<?= BASE_URL ?>/www/css/styles.css" />
         </head>
         <body>
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2019 at 05:30 PM
+-- Generation Time: Dec 03, 2019 at 06:07 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `onlinebank`
 --
+CREATE DATABASE IF NOT EXISTS `onlinebank` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `onlinebank`;
 
 -- --------------------------------------------------------
 
