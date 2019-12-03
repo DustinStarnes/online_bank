@@ -10,7 +10,7 @@ class Login extends IndexView
 {
     public function display(){
 
-        //header method defined to add header to the parent class
+        //header method
         parent::header();
         ?>
 
@@ -33,7 +33,7 @@ class Login extends IndexView
             <span style="float: left">Don't have an account? Sign up! <a href="/index.php?action=register">Login</a> </span>
         </div>
         <?php
-        //footer method defined to add footer to the parent class
+        //footer method
         parent::footer();
 
     }

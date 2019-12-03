@@ -6,37 +6,40 @@
  * Description:
  **/
 
-class Logout extends IndexView {
+class Register extends IndexView
+{
 
-    public function display($loggedout){
+    public function display($success)
+    {
 
         //header method
         parent::header();
         ?>
 
         <!-- top row of page header -->
-        <div class="top-row">Logout</div>
-
+        <div class="top-row">Create an account</div>
 
         <!-- middle row of page header -->
         <div class="middle-row">
         <?php
 
-        if ($loggedout) {
-            echo "You have been logged out.";
+        if ($success) {
+            echo "Registration was successful.";
         } else {
 
-            echo "Logout failed.";
+            echo "Registration failed.";
         }
 
 
         ?>
 
+
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Don't have an account? Sign up! <a href="/index.php?action=register">Register</a> </span>
+            <span style="float: left">You have attempted to register <a href="/index.php?action=login">Login</a> </span>
         </div>
         <?php
+
         //footer method
         parent::footer();
 
