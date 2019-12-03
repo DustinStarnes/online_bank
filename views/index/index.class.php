@@ -21,12 +21,12 @@ class Index extends IndexView
             <!-- baseline for the rest of the views -->
             <p>Complete the form</p>
 
-            <form action="../../index.php?action=registered" method="post">
-                <div><input class="text-box" type="text" name="Username" placeholder="username goes here" required /></div>
-                <div><input class="text-box" type="password" name="Password" placeholder="password goes here" required  minlength="5"/></div>
+            <form method="post" action="<?= BASE_URL . "/user/register/" ?>">
+                <div><input class="text-box" type="text" name="username" placeholder="username goes here" required /></div>
+                <div><input class="text-box" type="password" name="password" placeholder="password goes here" required  minlength="5"/></div>
                 <div><input class="text-box" type="email" name="email" placeholder="Email" required type="email" /></div>
-                <div><input class="text-box" type="text" name="FirstName" placeholder="First Name" required /></div>
-                <div><input class="text-box" type="text" name="LastName" placeholder="Last Name" required /></div>
+                <div><input class="text-box" type="text" name="firstname" placeholder="First Name" required /></div>
+                <div><input class="text-box" type="text" name="lastname" placeholder="Last Name" required /></div>
                 <div><input type="submit" value="Register" class="button"/></div>
             </form>
         </div>

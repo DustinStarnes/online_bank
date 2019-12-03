@@ -21,12 +21,18 @@ class UserModel
     }
 
     //get user details & add to the users table
-    public function add_user($username, $password, $first_name, $last_name, $email)
+    public function add_user()
     {
+        //retrieve user inputs from the registration form
+        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
+        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+        $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING);
+        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
         //passwords must be hashed before being stored into the database.
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES (" . $username . ", " . $password . ", " . $email . ", " . $first_name . ", " . $last_name . ")";
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES ('$username', '$hashed_password', '$email', '$firstname', '$lastname')";
 
         //run the query
 

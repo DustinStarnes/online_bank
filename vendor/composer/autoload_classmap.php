@@ -15,6 +15,9 @@ return array(
     'IndexView' => $baseDir . '/views/indexView.class.php',
     'Login' => $baseDir . '/views/user/login/login.class.php',
     'Logout' => $baseDir . '/views/user/logout/logout.class.php',
+    'Register' => $baseDir . '/views/user/login/register.class.php',
+    'Reset' => $baseDir . '/views/user/reset/reset.class.php',
+    'ResetConfirmed' => $baseDir . '/views/user/reset/reset_confirmed.class.php',
     'Transaction' => $baseDir . '/models/transaction.class.php',
     'TransactionController' => $baseDir . '/controllers/transaction_controller.class.php',
     'TransactionError' => $baseDir . '/views/transaction/error/transaction_error.class.php',
@@ -22,6 +25,8 @@ return array(
     'TransactionIndexView' => $baseDir . '/views/transaction/transaction_index_view.class.php',
     'TransactionModel' => $baseDir . '/models/transaction_model.class.php',
     'UserController' => $baseDir . '/controllers/user_controller.class.php',
+    'UserError' => $baseDir . '/views/user/error/user_error.class.php',
     'UserModel' => $baseDir . '/models/user_model.class.php',
+    'VerifyUser' => $baseDir . '/views/user/login/verify_user.class.php',
     'users_class' => $baseDir . '/models/users.class.php',
 );

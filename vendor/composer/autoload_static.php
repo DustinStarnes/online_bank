@@ -16,6 +16,9 @@ class ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5
         'IndexView' => __DIR__ . '/../..' . '/views/indexView.class.php',
         'Login' => __DIR__ . '/../..' . '/views/user/login/login.class.php',
         'Logout' => __DIR__ . '/../..' . '/views/user/logout/logout.class.php',
+        'Register' => __DIR__ . '/../..' . '/views/user/login/register.class.php',
+        'Reset' => __DIR__ . '/../..' . '/views/user/reset/reset.class.php',
+        'ResetConfirmed' => __DIR__ . '/../..' . '/views/user/reset/reset_confirmed.class.php',
         'Transaction' => __DIR__ . '/../..' . '/models/transaction.class.php',
         'TransactionController' => __DIR__ . '/../..' . '/controllers/transaction_controller.class.php',
         'TransactionError' => __DIR__ . '/../..' . '/views/transaction/error/transaction_error.class.php',
@@ -23,7 +26,9 @@ class ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5
         'TransactionIndexView' => __DIR__ . '/../..' . '/views/transaction/transaction_index_view.class.php',
         'TransactionModel' => __DIR__ . '/../..' . '/models/transaction_model.class.php',
         'UserController' => __DIR__ . '/../..' . '/controllers/user_controller.class.php',
+        'UserError' => __DIR__ . '/../..' . '/views/user/error/user_error.class.php',
         'UserModel' => __DIR__ . '/../..' . '/models/user_model.class.php',
+        'VerifyUser' => __DIR__ . '/../..' . '/views/user/login/verify_user.class.php',
         'users_class' => __DIR__ . '/../..' . '/models/users.class.php',
     );
 
