@@ -40,4 +40,28 @@ class TransactionController
         $view = new TransactionError();
         $view->display($message);
     }
+
+    //search transactions
+    public function search() {
+        //retrieve query terms from search form
+        $query_terms = trim($_GET['query-terms']);
+
+        //if search term is empty, list all movies
+        if ($query_terms == "") {
+            $this->index();
+        }
+
+        //search the database for matching movies
+        $transactions = $this->transaction_model->search_transaction($query_terms);
+
+        if ($transactions === false) {
+            //handle error
+            $message = "An error has occurred.";
+            $this->error($message);
+            return;
+        }
+        //display matched movies
+        $search = new TransactionSearch();
+        $search->display($query_terms, $transactions);
+    }
 }

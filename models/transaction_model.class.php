@@ -62,7 +62,7 @@ class TransactionModel {
         }
 
         //handle the result
-        //create an array to store all returned movies
+        //create an array to store all returned transactions
         $transactions = array();
 
         //loop through all rows in the returned recordsets
@@ -112,6 +112,43 @@ class TransactionModel {
             return false;
         }
     }
+
+    public function search_transaction($terms) {
+        $terms = explode(" ", $terms); //explode multiple terms into an array
+        //select statement for AND serach
+        $user = 1;
+        $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
+        foreach ($terms as $term) {
+            $sql .= " AND title LIKE '%" . $term . "%'";
+        }
+
+        $sql .= ")";
+
+        //execute the query
+        $query = $this->dbConnection->query($sql);
+
+        // the search failed, return false.
+        if (!$query)
+            return false;
+
+        //search succeeded, but no transaction was found.
+        if ($query->num_rows == 0)
+            return 0;
+
+        //search succeeded, and found at least 1 transaction found.
+        //create an array to store all the returned transactions
+        $transactions = array();
+
+        //loop through all rows in the returned recordsets
+        while ($obj = $query->fetch_object()) {
+            $transaction = new Transaction(stripslashes($obj->id), stripslashes($obj->title), stripslashes($obj->amount), stripslashes($obj->account_type), stripslashes($obj->date));
+
+            //add the transaction into the array
+            $transactions[] = $transaction;
+        }
+        return $transactions;
+    }
+
 
 
 }
