@@ -6,7 +6,7 @@
  * Description:
  **/
 
-class user_model
+class UserModel
 {
     //private data members
     private $db;

@@ -23,7 +23,7 @@ class ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5
         'TransactionIndexView' => __DIR__ . '/../..' . '/views/transaction/transaction_index_view.class.php',
         'TransactionModel' => __DIR__ . '/../..' . '/models/transaction_model.class.php',
         'UserController' => __DIR__ . '/../..' . '/controllers/user_controller.class.php',
-        'user_model' => __DIR__ . '/../..' . '/models/user_model.class.php',
+        'UserModel' => __DIR__ . '/../..' . '/models/user_model.class.php',
         'users_class' => __DIR__ . '/../..' . '/models/users.class.php',
     );
 
