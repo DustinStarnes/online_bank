@@ -17,7 +17,7 @@ class UserModel
     public function __construct()
     {
         $this->db = Database::getInstance();
-        $this->dbConnection = $this->db = getConnection();
+        $this->dbConnection = $this->db->getConnection();
     }
 
     //get user details & add to the users table
