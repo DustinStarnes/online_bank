@@ -12,10 +12,12 @@ class TransactionIndexView extends IndexView {
         parent::header($title)
         ?>
         <!--create the search bar -->
-        <div id="searchbar">
+        <div id="searchbar" class="searchBar-holder">
             <form method="get" action="<?= BASE_URL ?>/transaction/search">
-                <input type="text" name="query-terms" id="searchtextbox" placeholder="Search transactions" autocomplete="off" onkeyup="handleKeyUp(event)">
-                <input type="submit" value="Go" />
+
+                    <input class="searchBar" type="text" name="query-terms" id="searchtextbox" placeholder="Search transactions" autocomplete="off" onkeyup="handleKeyUp(event)">
+                    <input class="searchBtn" type="submit" value="Go" />
+
             </form>
             <div id="suggestionDiv"></div>
         </div>

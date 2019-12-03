@@ -15,15 +15,16 @@ class TransactionIndex extends TransactionIndexView {
         //display page header
         parent::header("List All Transactions");
         ?>
-        <div class="top-row"> Transactions for user</div>
+        <div class="top-row"> Transactions for user </div>
 
         <div class="middle-row">
         <table class="table-container">
             <thead>
-                <td>Title</td>
-                <td>Amount</td>
-                <td>Account_type</td>
-                <td>Date</td>
+                <th class='right'>Title</th>
+                <th class='right'>Amount</th>
+                <th class='right'>Account_type</th>
+                <th class='right'>Date</th>
+                <th>Edit</th>
             </thead>
             <tbody>
             <?php
@@ -40,11 +41,11 @@ class TransactionIndex extends TransactionIndexView {
 
 
                     echo "<tr>
-                        <td>$title</td>
-                        <td>$amount</td>
-                        <td>$account_type</td>
-                        <td>$date</td>
-                        <td><a href='", BASE_URL, "/transaction/edit/$id'>Edit</a></td>
+                        <td class='right'>$title</td>
+                        <td class='right'>$amount</td>
+                        <td class='right'>$account_type</td>
+                        <td class='right'>$date</td>
+                        <td><a class='edit' href='", BASE_URL, "/transaction/edit/$id'>Edit</a></td>
                         </tr>";
                     ?>
                     <?php
