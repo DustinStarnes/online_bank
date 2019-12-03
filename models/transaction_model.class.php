@@ -95,5 +95,23 @@ class TransactionModel {
 
     }
 
+    //get user details & add to the users table
+    public function add_transaction($title, $amount, $account_type)
+    {
+        $user_id=1;
+
+        $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES (" . $title . ", " . $user_id . ", " . $amount . ", " . $account_type . ")";
+
+        //run the query
+
+        if ($this->dbConnection->query($sql) === TRUE) {
+            echo "New record created successfully";
+            return true;
+        } else {
+            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+            return false;
+        }
+    }
+
 
 }

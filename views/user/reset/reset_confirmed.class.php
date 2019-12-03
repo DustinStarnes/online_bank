@@ -6,27 +6,26 @@
  * Description:
  **/
 
-class Logout extends IndexView {
+class ResetConfirmed extends IndexView
+{
 
-    public function display($loggedout){
+    public function display($reset){
 
         //header method
-        parent::header("Logout");
+        parent::header("Reset is Confirmed");
         ?>
-
         <!-- top row of page header -->
         <div class="top-row">Logout</div>
-
 
         <!-- middle row of page header -->
         <div class="middle-row">
         <?php
 
-        if ($loggedout) {
-            echo "You have been logged out.";
+        if ($reset) {
+            echo "Password Reset";
         } else {
 
-            echo "Logout failed.";
+            echo "Reset Failed";
         }
 
 
@@ -34,9 +33,11 @@ class Logout extends IndexView {
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Don't have an account? Sign up! <a href="/index.php?action=register">Register</a> </span>
+            <span style="float: left">Want to log out? <a href="../../../index.php">Logout</a></span>
+            <span style="float: right">Don't have an account? <a href="../../../index.php">Register</a></span>
         </div>
         <?php
+
         //footer method
         parent::footer();
 
