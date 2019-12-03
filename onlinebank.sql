@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 03, 2019 at 06:05 PM
+-- Generation Time: Dec 03, 2019 at 06:07 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -19,10 +19,32 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `usersystem`
+-- Database: `onlinebank`
 --
-CREATE DATABASE IF NOT EXISTS `usersystem` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `usersystem`;
+CREATE DATABASE IF NOT EXISTS `onlinebank` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `onlinebank`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
+  `title` varchar(150) NOT NULL,
+  `user_id` int(20) NOT NULL,
+  `account_type` varchar(20) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `title`, `user_id`, `account_type`, `amount`, `date`) VALUES
+(1, '', 1, 'Savings', '100.00', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -37,39 +59,46 @@ CREATE TABLE `users` (
   `email` varchar(80) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`) VALUES
-(1, 'admin', '$2y$10$vlYvvXIqeUO0.LFWCTNYYu.2.2l7FonBCV/ycoQP4vy2gD3ieFYme', 'admin@gmail.com', 'Admin', 'Superman'),
-(21, 'ffsssdss', '$2y$10$fc/VAwgByRiWDq1itgFqnu8PICUxxKEJphVyXkTumQSZVFN9.UFgG', 'ff@gmail.com', 'ff', 'ff'),
-(22, 'ff', '$2y$10$mgxGjwC5eVNGzV1gDJ3TxuGeALZ89RzBDuMkV4HBBOwZHwWMuCmJm', 'ff@gmail.com', 'ff', 'ff'),
-(23, 'ss', '$2y$10$x/bcZccGKVooNKSeyt8c/et5/OlmOGkKnHvEEs/Q0xNAl56v.LMYG', 'ss@gmail.com', 'ss', 'ss'),
-(24, 'sss', '$2y$10$Sp29i/9apOxfgk2nOccYMOamuBplKYFImsdQQsTg3UwbdZaVcTHf.', 'ss@gmail.com', 'ss', 'ss');
+(1, 'user', 'password', 'email@email.com', 'name', 'name');
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
