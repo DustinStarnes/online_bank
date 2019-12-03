@@ -12,7 +12,7 @@ class Reset extends IndexView
     public function display()
     {
         //header method
-        parent::header();
+        parent::header("Reset");
         ?>
 
         <!-- top row of page header -->

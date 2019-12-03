@@ -11,7 +11,7 @@ class Logout extends IndexView {
     public function display($loggedout){
 
         //header method
-        parent::header();
+        parent::header("Logout");
         ?>
 
         <!-- top row of page header -->

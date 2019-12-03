@@ -11,7 +11,7 @@ class Login extends IndexView
     public function display(){
 
         //header method
-        parent::header();
+        parent::header("Login");
         ?>
 
         <!-- top row of page header -->

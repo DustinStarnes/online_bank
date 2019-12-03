@@ -13,7 +13,7 @@ class Register extends IndexView
     {
 
         //header method
-        parent::header();
+        parent::header("Register");
         ?>
 
         <!-- top row of page header -->

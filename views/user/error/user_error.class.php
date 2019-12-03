@@ -12,7 +12,7 @@ class UserError extends IndexView
     public function display($message) {
 
         //header method
-        parent::header();
+        parent::header("User Error");
         ?>
         <!-- page specific content starts -->
         <!-- top row for the page header  -->

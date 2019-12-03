@@ -12,7 +12,7 @@ class ResetConfirmed extends IndexView
     public function display($reset){
 
         //header method
-        parent::header();
+        parent::header("Reset is Confirmed");
         ?>
         <!-- top row of page header -->
         <div class="top-row">Logout</div>

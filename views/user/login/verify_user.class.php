@@ -11,7 +11,7 @@ class VerifyUser extends IndexView
 
     public function display($verify) {
         //header method
-        parent::header();
+        parent::header("Verify User");
         ?>
 
         <!-- top row of page header -->
