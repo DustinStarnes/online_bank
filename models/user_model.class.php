@@ -37,7 +37,7 @@ class UserModel
         //run the query
 
         if ($this->dbConnection->query($sql) === TRUE) {
-            echo "New record created successfully";
+            //echo "New record created successfully";
             return true;
         } else {
             echo "Error: " . $sql . "<br>" . $this->dbConnection->error;

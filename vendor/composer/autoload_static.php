@@ -25,6 +25,7 @@ class ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5
         'TransactionIndex' => __DIR__ . '/../..' . '/views/transaction/transaction_index.class.php',
         'TransactionIndexView' => __DIR__ . '/../..' . '/views/transaction/transaction_index_view.class.php',
         'TransactionModel' => __DIR__ . '/../..' . '/models/transaction_model.class.php',
+        'TransactionSearch' => __DIR__ . '/../..' . '/views/transaction/transaction_search.class.php',
         'UserController' => __DIR__ . '/../..' . '/controllers/user_controller.class.php',
         'UserError' => __DIR__ . '/../..' . '/views/user/error/user_error.class.php',
         'UserModel' => __DIR__ . '/../..' . '/models/user_model.class.php',

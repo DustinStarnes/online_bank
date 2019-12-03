@@ -122,18 +122,21 @@ class TransactionModel {
             $sql .= " AND title LIKE '%" . $term . "%'";
         }
 
-        $sql .= ")";
 
         //execute the query
         $query = $this->dbConnection->query($sql);
 
-        // the search failed, return false.
-        if (!$query)
+        // if the query failed, return false.
+        if (!$query){
+            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
             return false;
+        }
 
-        //search succeeded, but no transaction was found.
-        if ($query->num_rows == 0)
+        //if the query succeeded, but no transaction was found.
+        if ($query->num_rows == 0) {
+            echo "Error: No Transaction found: " . $sql . "<br>" . $this->dbConnection->error;
             return 0;
+        }
 
         //search succeeded, and found at least 1 transaction found.
         //create an array to store all the returned transactions
