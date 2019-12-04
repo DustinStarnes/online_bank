@@ -20,11 +20,13 @@ class TransactionIndex extends TransactionIndexView {
         <div class="middle-row">
         <table class="table-container">
             <thead>
+            <tr>
                 <th class='right'>Title</th>
                 <th class='right'>Amount</th>
                 <th class='right'>Account_type</th>
                 <th class='right'>Date</th>
                 <th>Edit</th>
+            </tr>
             </thead>
             <tbody>
             <?php

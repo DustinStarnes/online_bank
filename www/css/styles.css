@@ -107,6 +107,7 @@
 }
 table{
     border: 2px solid #ffffff;
+    border-collapse: collapse;
 }
 th{
     color: #ffffff;
@@ -114,7 +115,7 @@ th{
     border-bottom: 1px solid #ffffff;
 }
 td{
-    padding: 4px;
+    padding: 6px;
 }
 .right{
     border-right: 1px solid #ffffff;

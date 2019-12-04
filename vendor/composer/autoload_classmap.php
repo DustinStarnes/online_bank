@@ -6,9 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AddTransaction' => $baseDir . '/views/transaction/add/add_transaction.class.php',
     'ComposerAutoloaderInit4a3d3731011d0ef0f6f621105cb8b6b5' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5' => $vendorDir . '/composer/autoload_static.php',
+    'ConfrimAdd' => $baseDir . '/views/transaction/add/confirm_add.class.php',
     'Database' => $baseDir . '/application/database.class.php',
     'Dispatcher' => $baseDir . '/application/dispatcher.class.php',
     'Index' => $baseDir . '/views/index/index.class.php',

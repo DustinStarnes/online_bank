@@ -7,9 +7,11 @@ namespace Composer\Autoload;
 class ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5
 {
     public static $classMap = array (
+        'AddTransaction' => __DIR__ . '/../..' . '/views/transaction/add/add_transaction.class.php',
         'ComposerAutoloaderInit4a3d3731011d0ef0f6f621105cb8b6b5' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInit4a3d3731011d0ef0f6f621105cb8b6b5' => __DIR__ . '/..' . '/composer/autoload_static.php',
+        'ConfrimAdd' => __DIR__ . '/../..' . '/views/transaction/add/confirm_add.class.php',
         'Database' => __DIR__ . '/../..' . '/application/database.class.php',
         'Dispatcher' => __DIR__ . '/../..' . '/application/dispatcher.class.php',
         'Index' => __DIR__ . '/../..' . '/views/index/index.class.php',

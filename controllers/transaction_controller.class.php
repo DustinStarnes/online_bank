@@ -22,7 +22,7 @@ class TransactionController
 
         if (!$transactions) {
             //display an error
-            $message = "There was a problem displaying movies.";
+            $message = "There was a problem displaying Transactions.";
             $this->error($message);
             return;
         }
@@ -31,9 +31,14 @@ class TransactionController
         $view = new TransactionIndex();
         $view->display($transactions);
     }
-    public function add(){
+
+    public function add_new(){
+        $view= new AddTransaction();
+        $view->display();
+    }
+    public function do_add(){
         $addTransaction = $this->transaction_model->add_transaction();
-        $view = new Add();
+        $view = new ConfrimAdd();
         $view->display($addTransaction);
     }
     public function error($message){

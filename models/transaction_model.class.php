@@ -96,19 +96,30 @@ class TransactionModel {
     }
 
     //get user details & add to the users table
-    public function add_transaction($title, $amount, $account_type)
+    public function add_transaction()
     {
+        //retrieve user inputs from the registration form
+        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
+        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT);
+        $sign = filter_input(INPUT_POST, "sign", FILTER_SANITIZE_STRING);
+        $account_type = filter_input(INPUT_POST, 'account_type', FILTER_SANITIZE_STRING);
+
+        if($sign == "-") {
+            $amount = -1 * $amount;
+        }
+
         $user_id=1;
 
-        $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES (" . $title . ", " . $user_id . ", " . $amount . ", " . $account_type . ")";
 
-        //run the query
+        $sql = "INSERT INTO transactions(title, user_id, account_type, amount)  VALUES (' $title', $user_id ,  '$account_type' ,  $amount  ) ";
+
+
 
         if ($this->dbConnection->query($sql) === TRUE) {
-            echo "New record created successfully";
+            //echo "New record created successfully";
             return true;
         } else {
-            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+            //echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
             return false;
         }
     }
