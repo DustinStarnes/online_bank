@@ -33,6 +33,7 @@ class ConfrimAdd extends IndexView
         }
 
         ?>
+        </div>
 
 
         <!-- bottom row of page header -->

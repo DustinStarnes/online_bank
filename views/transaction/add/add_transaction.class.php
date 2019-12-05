@@ -37,6 +37,7 @@ class AddTransaction extends IndexView
             </div>
             <div><input type="submit" value="Submit" class="button"/></div>
         </form>
+        </div>
 
 
         <!-- bottom row of page header -->
