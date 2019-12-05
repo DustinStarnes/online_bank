@@ -125,3 +125,44 @@ td{
     color: #ffffff;
     text-transform: lowercase;
 }
+.main-header{
+    width: 720px;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+
+    background-color: #3966CC;
+    color: white;
+}
+.center{
+    width: 720px;
+    height: 5px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+
+    background-color: #3966CC;
+    color: white;
+}
+.main-header2{
+    width: 720px;
+    height: 75px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border-radius: 0 0 15px 15px ;
+    background-color: #3966CC;
+    color: white;
+}
+
+

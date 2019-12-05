@@ -18,13 +18,13 @@ class TransactionSearch extends TransactionIndexView
         //display page header
         parent::header("Search Results");
         ?>
-        <div id="main-header"> Search Results for <i><?= $terms ?></i></div>
+        <div class="main-header" id="main-header"> Search Results for <i><?= $terms ?></i>
         <span class="rcd-numbers">
             <?php
             echo((!is_array($transactions)) ? "( 0 - 0 )" : "( 1 - " . count($transactions) . " )");
             ?>
-        </span>
-        <hr>
+
+        </div>        <hr class="center">
 
         <!-- display all records in a grid -->
         <div class="middle-row">
@@ -68,7 +68,7 @@ class TransactionSearch extends TransactionIndexView
                 </tbody>
             </table>
         </div>
-        <a href="<?= BASE_URL ?>/transaction/index">Go to transaction list</a>
+        <a  class="main-header2" href="<?= BASE_URL ?>/transaction/index">Go to transaction list</a>
         <?php
         //display page footer
         parent::footer();
