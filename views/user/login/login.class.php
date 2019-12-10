@@ -30,7 +30,7 @@ class Login extends IndexView
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Don't have an account? Sign up! <a href="/index.php?action=register">Login</a> </span>
+            <span style="float: left">Don't have an account? <a href="../../../../online_bank"> Sign up!</a> </span>
         </div>
         <?php
         //footer method
