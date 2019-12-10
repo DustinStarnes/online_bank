@@ -73,6 +73,7 @@
 
 .middle-row{
     width: 720px;
+
     height: 300px;
     margin: auto;
     display: flex;
@@ -84,6 +85,7 @@
     background-color: #3966CC;
     color: white;
 }
+
 
 .bottom-row{
     width: 720px;

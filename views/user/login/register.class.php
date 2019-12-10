@@ -21,18 +21,18 @@ class Register extends IndexView
 
         <!-- middle row of page header -->
         <div class="middle-row">
-        <?php
+            <?php
 
-        if ($success) {
-            echo "Registration was successful.";
-        } else {
+            if ($success) {
+                echo "Registration was successful.";
+            } else {
 
-            echo "Registration failed.";
-        }
+                echo "Registration failed.";
+            }
 
 
-        ?>
-
+            ?>
+        </div>
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
