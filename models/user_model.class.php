@@ -126,8 +126,7 @@ class UserModel
                     throw  new DatabaseException("Database Error");
                 }
             }
-        } catch
-        (DataMissing $e) {
+        } catch (DataMissing $e) {
             return $e->getMessage();
         } catch (DatabaseException $e) {
             return $e->getMessage();
@@ -141,8 +140,7 @@ class UserModel
 
 //create logout function that destorys the temporary cookie that is created when the user signs in.
 
-    public
-    function logout()
+    public function logout()
     {
 
         if (isset($_COOKIE['username'])) {
@@ -155,8 +153,7 @@ class UserModel
 
 //retrieve the users username and password from the password reset & update the users password in the database.
 
-    public
-    function reset_password($password)
+    public function reset_password($password)
     {
         //retrieve username and password from a form
         $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
