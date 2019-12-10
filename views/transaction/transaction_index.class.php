@@ -64,7 +64,7 @@ class TransactionIndex extends TransactionIndexView {
         <div class="bottom-row">
             <span style="float: left">Ready to leave? <a class="link" href="/index.php?action=logout">Log Out</a> </span>
         </div>
-
+        <script src="www/js/ajax_autosuggestion.js"></script>
         <?php
         //display page footer
         parent::footer();
