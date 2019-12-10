@@ -32,7 +32,7 @@ class UserController
     }
     public function verify(){
         $verifyUser = $this->user_model->verify_user();
-        $view = new Verify();
+        $view = new VerifyUser();
         $view->display($verifyUser);
     }
     public function logout(){

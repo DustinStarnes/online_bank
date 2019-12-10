@@ -89,7 +89,7 @@ class UserModel
 //retrieve/verify the user's login info from the login form and then verify in the database.
 
     public
-    function verify_user($username, $password)
+    function verify_user()
     {
         //retrieve username & password
         $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
@@ -117,8 +117,12 @@ class UserModel
                     if ($query AND $query->num_rows > 0) {
                         $result_row = $query->fetch_assoc();
                         $hash = $result_row['password'];
+                        //get the id
+                        $user_id = $result_row['id'];
+
                         if (password_verify($password, $hash)) {
-                            setcookie("user", $username);
+                            setcookie("username", $username);
+                            setcookie("user_id", $user_id);
                             return "Success";
                         }
                     }
@@ -153,7 +157,7 @@ class UserModel
 
 //retrieve the users username and password from the password reset & update the users password in the database.
 
-    public function reset_password($password)
+    public function reset_password()
     {
         //retrieve username and password from a form
         $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));

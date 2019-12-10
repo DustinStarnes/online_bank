@@ -108,7 +108,14 @@ class TransactionModel {
             $amount = -1 * $amount;
         }
 
-        $user_id=1;
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user_id = $_COOKIE['user_id'];
+
+        } else {
+            //username cookie is not set error
+            return false;
+        }
 
 
         $sql = "INSERT INTO transactions(title, user_id, account_type, amount)  VALUES (' $title', $user_id ,  '$account_type' ,  $amount  ) ";
@@ -127,8 +134,7 @@ class TransactionModel {
     public function search_transaction($terms) {
         $terms = explode(" ", $terms); //explode multiple terms into an array
         //select statement for AND serach
-        $user = 1;
-        $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
+        $sql = "SELECT * FROM transactions WHERE user_id=" . $user_id ;
         foreach ($terms as $term) {
             $sql .= " AND title LIKE '%" . $term . "%'";
         }
