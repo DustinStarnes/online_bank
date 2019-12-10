@@ -24,65 +24,127 @@ class UserModel
     public function add_user()
     {
         //retrieve user inputs from the registration form
-        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
+        $username = trim(filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING));
         $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
-        $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING);
-        $firstname = filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING);
-        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
+        $lastname = trim(filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_STRING));
+        $firstname = trim(filter_input(INPUT_POST, 'firstname', FILTER_SANITIZE_STRING));
+        $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
 
-        //passwords must be hashed before being stored into the database.
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES ('$username', '$hashed_password', '$email', '$firstname', '$lastname')";
-
-        //run the query
-
-        if ($this->dbConnection->query($sql) === TRUE) {
-            //echo "New record created successfully";
-            return true;
-        } else {
-            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
-            return false;
-        }
-    }
-
-    //retrieve the user's login info from the login form and then verify in the database.
-
-    public function verify_user($username, $password)
-    {
-        //SQL select statement
-        $sql = "SELECT * FROM users WHERE username = " . $username;
-
-
-        //run the query
-        $query = $this->dbConnection->query($sql);
-
-        // to check if the the username is in the database.
-        if ($query_row = $query->fetch_assoc()) {
-
-            //verify password
-
-            if (password_verify($query_row["password"], $password)) {
-
-                //set temporary cookie
-                setcookie("username", $username);
-                return true;
+        try {
+            if ($username == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($password == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($lastname == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($firstname == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($email == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if (strlen($password) < 5) {
+                throw new DataLength("Password must be 5 or more characters");
+            }
+            if (!Utilities::checkemail($email)) {
+                throw new EmailFormat("Email is not valid.");
             } else {
 
-                //if password is not correct
-                return false;
+            }
+            //passwords must be hashed before being stored into the database.
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            // construct Insert query
+            $sql = "INSERT INTO users(username, password, email, firstname, lastname) VALUES ('$username', '$hashed_password', '$email', '$firstname', '$lastname')";
+
+            //execute the query and return true if successful or false if failed
+            if ($this->dbConnection->query($sql) === TRUE) {
+                return "Successful";
+            } else {
+                throw new DatabaseException("Database error has occured.");
             }
 
-        } else {
-            //if user is not in database
-            return false;
+
+            // catch statements
+        } catch (DataMissing $e) {
+            return $e->getMessage();
+        } catch
+        (DataLength $e) {
+            return $e->getMessage();
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        } catch (EmailFormat $e) {
+            return $e->getMessage();
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
+
 
     }
 
-    //create logout function that destorys the temporary cookie that is created when the user signs in.
 
-    public function logout()
+//retrieve/verify the user's login info from the login form and then verify in the database.
+
+    public
+    function verify_user($username, $password)
     {
+        //retrieve username & password
+        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+        $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+
+        try {
+            if ($username == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($password == "") {
+                throw new DataMissing("All fields must be filled.");
+            } else {
+
+
+                //SQL select statement
+                $sql = "SELECT * FROM users WHERE username = " . $username;
+
+                //run the query
+                $query = $this->dbConnection->query($sql);
+
+                // to check if the the username is in the database.
+                if ($query_row = $query->fetch_assoc()) {
+
+                    //verify password; if password is valid, set a temporary cookie
+                    if ($query AND $query->num_rows > 0) {
+                        $result_row = $query->fetch_assoc();
+                        $hash = $result_row['password'];
+                        if (password_verify($password, $hash)) {
+                            setcookie("user", $username);
+                            return "Success";
+                        }
+                    }
+
+                    throw  new DatabaseException("Database Error");
+                }
+            }
+        } catch
+        (DataMissing $e) {
+            return $e->getMessage();
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
+
+    }
+
+
+//create logout function that destorys the temporary cookie that is created when the user signs in.
+
+    public
+    function logout()
+    {
+
         if (isset($_COOKIE['username'])) {
             unset($_COOKIE['username']);
             return true;
@@ -91,40 +153,68 @@ class UserModel
         }
     }
 
-    //retrieve the users username and password from the password reset & update the users password in the database.
+//retrieve the users username and password from the password reset & update the users password in the database.
 
-    public function reset_password($password)
+    public
+    function reset_password($password)
     {
+        //retrieve username and password from a form
+        $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
 
-        //SQL select statement
+        try {
+            if ($username == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if ($password == "") {
+                throw new DataMissing("All fields must be filled.");
+            }
+            if (strlen($password) < 5) {
+                throw new DataLength("Password must be 5 or more characters");
+            } else {
 
-        $sql = "SELECT * FROM users WHERE username=" . $_COOKIE['username'];
+                //SQL select statement
 
-        //run the query
+                $sql = "SELECT * FROM users WHERE username=" . $_COOKIE['username'];
 
-        $query = $this->dbConnection->query($sql);
+                //run the query
 
-        //if username is in database
+                $query = $this->dbConnection->query($sql);
 
-        if ($query_row = $query->fetch_assoc()) {
+                //if username is in database
 
-            //hash password
+                if ($query_row = $query->fetch_assoc()) {
 
-            $password = password_hash($password, PASSWORD_DEFAULT);
+                    //hash password
 
-            //SQL update statement
+                    $password = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "UPDATE users SET password = " . $password . " WHERE username = " . $_COOKIE['username'];
+                    //SQL update statement
+
+                    $sql = "UPDATE users SET password = " . $password . " WHERE username = " . $_COOKIE['username'];
 
 
-            //execute the query, return true or false
+                    //execute the query, return true or false
 
-            return $this->dbConnection->query($sql);
+                    //return false if no rows were affected
+                    if (!$query || $this->dbConnection->affected_rows == 0) {
 
-        } else {
+                        throw  new DatabaseException("Database Error");
+                    }
 
-            //if user is not found in database
-            return false;
+                    return "Successful";
+                }
+            }
+        } catch
+        (DataLength $e) {
+            return $e->getMessage();
+        } catch
+        (DataMissing $e) {
+            return $e->getMessage();
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        } catch (Exception $e) {
+            return $e->getMessage();
         }
     }
 }
