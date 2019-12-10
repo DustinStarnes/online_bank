@@ -30,7 +30,7 @@ class Reset extends IndexView
 
 
         <div class="bottom-row">
-            <span style="float: left">Cancel password reset? <a href="../../../index.php">Cancel Reset</a></span>
+            <span style="float: left">Cancel password reset? <a class="link" href="../../../index.php">Cancel Reset</a></span>
             <span style="float: right"></span>
         </div>
         <?php

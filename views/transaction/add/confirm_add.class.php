@@ -38,7 +38,7 @@ class ConfrimAdd extends IndexView
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left"><a href="<?= BASE_URL . "/transaction/index" ?>">View Transactions</a> </span>
+            <span style="float: left"><a class="link" href="<?= BASE_URL . "/transaction/index" ?>">View Transactions</a> </span>
         </div>
         <?php
 

@@ -31,10 +31,10 @@ class Logout extends IndexView {
 
 
         ?>
-
+        </div>
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Don't have an account? Sign up! <a href="/index.php?action=register">Register</a> </span>
+            <span style="float: left">Don't have an account? Sign up! <a class="link" href="/index.php?action=register">Register</a> </span>
         </div>
         <?php
         //footer method

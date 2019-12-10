@@ -32,11 +32,11 @@ class VerifyUser extends IndexView
 
 
         }
-
+        </div>
         <div class="bottom-row">
             <span style="float: left">
-                Want to log out? <a href="index.php?action=logout">Logout</a>            </span>
-            <span style="float: right">Reset password? <a href="index.php?action=reset">Reset</a></span>
+                Want to log out? <a class="link" href="index.php?action=logout">Logout</a>            </span>
+            <span style="float: right">Reset password? <a class="link" href="index.php?action=reset">Reset</a></span>
         </div>
         <?php
 
