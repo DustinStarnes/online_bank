@@ -25,9 +25,9 @@ class IndexView
         <div class="header-banner">I211 Banking Online</div>
         <div class="navbar">
             <div class="lonks">
-                <a class="lonk" href="<?= BASE_URL . "#" ?>">Home</a>
+                <a class="lonk" href="<?= BASE_URL . "/" ?>">Home</a>
                 <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "#" ?>">Register</a>
+                <a class="lonk" href="<?= BASE_URL . "/" ?>">Register</a>
                 <span> | </span>
                 <a class="lonk" href="<?= BASE_URL . "/user/login" ?>">Login</a>
                 <span> | </span>
@@ -35,9 +35,9 @@ class IndexView
                 <span> | </span>
                 <a class="lonk" href="<?= BASE_URL . "/transaction/index" ?>">Balance</a>
                 <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "#" ?>">Reset Password</a>
+                <a class="lonk" href="<?= BASE_URL . "/user/reset" ?>">Reset Password</a>
                 <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "#" ?>">Logout</a>
+                <a class="lonk" href="<?= BASE_URL . "/user/logout" ?>">Logout</a>
             </div>
         </div>
         <?php

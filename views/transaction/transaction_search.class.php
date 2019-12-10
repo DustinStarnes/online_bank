@@ -24,7 +24,7 @@ class TransactionSearch extends TransactionIndexView
             echo((!is_array($transactions)) ? "( 0 - 0 )" : "( 1 - " . count($transactions) . " )");
             ?>
 
-        </div>        <hr class="center">
+        </div>
 
         <!-- display all records in a grid -->
         <div class="middle-row">
@@ -68,7 +68,9 @@ class TransactionSearch extends TransactionIndexView
                 </tbody>
             </table>
         </div>
-        <a  class="main-header2" href="<?= BASE_URL ?>/transaction/index">Go to transaction list</a>
+
+            <a  class="bottom-row" href="<?= BASE_URL ?>/transaction/index">Go to transaction list</a>
+
         <?php
         //display page footer
         parent::footer();

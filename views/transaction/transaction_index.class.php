@@ -62,7 +62,7 @@ class TransactionIndex extends TransactionIndexView {
         </div>
 
         <div class="bottom-row">
-            <span style="float: left">Already have an account? <a class="link" href="/index.php?action=login">Login</a> </span>
+            <span style="float: left">Ready to leave? <a class="link" href="/index.php?action=logout">Log Out</a> </span>
         </div>
 
         <?php

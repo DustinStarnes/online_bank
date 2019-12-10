@@ -19,7 +19,7 @@ class Index extends IndexView
         <!-- middle row of page header -->
         <div class="middle-row">
             <!-- baseline for the rest of the views -->
-            <p>Complete the form</p>
+            <p>--- Please complete the form ---</p>
 
             <form method="post" action="<?= BASE_URL . "/user/register/" ?>">
                 <div><input class="text-box" type="text" name="username" placeholder="username goes here" required /></div>
