@@ -18,7 +18,7 @@ class VerifyUser extends IndexView
         <div class="top-row">Login</div>
 
         <!-- middle row of page header -->
-        <div class="middle-row">
+        <div class="middle-row"><p><?= $verify ?></p>
 
         <?php
                 if (strpos($verify, "successful") == true) { //if the user has logged in, display the logout button
@@ -26,7 +26,7 @@ class VerifyUser extends IndexView
                     echo "Successful";
                     echo "Welcome ". $_COOKIE['username'];
                 } else { //if the user has not logged in, display the login button
-                    echo "Already have an account? <a href='index.php?action=login'>Login</a>";
+                    echo "<br>Already have an account? <a href='index.php?action=login'>Login</a>";
                 }
                 ?>
 

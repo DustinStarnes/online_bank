@@ -37,7 +37,7 @@ class UserController
     }
     public function logout(){
         $logOut = $this->user_model->logout();
-        $view = new Register();
+        $view = new Logout();
         $view->display($logOut);
     }
     public function reset(){
