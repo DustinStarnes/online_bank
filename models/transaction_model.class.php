@@ -17,22 +17,6 @@ class TransactionModel {
         $this->dbConnection = $this->db->getConnection();
     }
 
-    // retrieve user details from the registration form and then add them into
-    //the users table in the usersystem database.
-    public function addTransaction($user_id, $account_type, $amount){
-        //add transaction to database
-        $sql = "INSERT INTO transactions(user_id, account_type, amount) VALUES (" .$user_id.", " .$account_type.", ".$amount.")";
-
-        //execute the query
-        if ($this->dbConnection->query($sql) === TRUE) {
-            echo "New record created successfully";
-            return true;
-        } else {
-            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
-            return false;
-        }
-
-    }
 
     public function list_transactions() {
         /* construct the sql SELECT statement in this format
@@ -111,10 +95,8 @@ class TransactionModel {
         //get user's ID
         if (isset($_COOKIE['user_id'])) {
             $user_id = $_COOKIE['user_id'];
-
         } else {
-            //username cookie is not set error
-            return false;
+            $user_id = 1;
         }
 
 
@@ -134,6 +116,13 @@ class TransactionModel {
     public function search_transaction($terms) {
         $terms = explode(" ", $terms); //explode multiple terms into an array
         //select statement for AND serach
+
+        if (isset($_COOKIE['user_id'])) {
+            $user_id = $_COOKIE['user_id'];
+        } else {
+            $user_id = 1;
+        }
+
         $sql = "SELECT * FROM transactions WHERE user_id=" . $user_id ;
         foreach ($terms as $term) {
             $sql .= " AND title LIKE '%" . $term . "%'";
@@ -167,6 +156,40 @@ class TransactionModel {
             $transactions[] = $transaction;
         }
         return $transactions;
+    }
+
+    public function edit_transaction()
+    {
+        //retrieve user inputs from the registration form
+        $id = filter_input(INPUT_POST, "id");
+        $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
+        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT);
+        $sign = filter_input(INPUT_POST, "sign", FILTER_SANITIZE_STRING);
+        $account_type = filter_input(INPUT_POST, 'account_type', FILTER_SANITIZE_STRING);
+
+        if($sign == "-") {
+            $amount = -1 * $amount;
+        }
+
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user_id = $_COOKIE['user_id'];
+        } else {
+            $user_id = 1;
+        }
+
+
+        $sql = "UPDATE transactions WHERE user_id= $id SET  title= '$title', account_type=  '$account_type' , amount= $amount  ) ";
+
+
+
+        if ($this->dbConnection->query($sql) === TRUE) {
+            echo "Edited successfully";
+            return true;
+        } else {
+            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+            return false;
+        }
     }
 
 

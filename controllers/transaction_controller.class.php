@@ -69,4 +69,14 @@ class TransactionController
         $search = new TransactionSearch();
         $search->display($query_terms, $transactions);
     }
+
+    public function edit(){
+        $view= new TransactionEdit();
+        $view->display();
+    }
+    public function do_edit() {
+        $editTransaction = $this->transaction_model->edit_transaction();
+        $view = new ConfirmEdit();
+        $view->display($editTransaction);
+    }
 }

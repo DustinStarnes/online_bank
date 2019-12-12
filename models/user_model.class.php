@@ -92,53 +92,55 @@ class UserModel
     function verify_user()
     {
         //retrieve username & password
-        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
         $username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING));
+        $password = trim(filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING));
+
 
         try {
             if ($username == "") {
-                throw new DataMissing("All fields must be filled.");
+                throw new DataMissing("All fields must be filled. Username:" . $username);
             }
             if ($password == "") {
-                throw new DataMissing("All fields must be filled.");
+                throw new DataMissing("All fields must be filled. Password:" . $password);
             } else {
-
-
                 //SQL select statement
-                $sql = "SELECT * FROM users WHERE username = " . $username;
+                $sql = "SELECT * FROM users WHERE username = '$username' ";
 
                 //run the query
                 $query = $this->dbConnection->query($sql);
 
-                // to check if the the username is in the database.
-                if ($query_row = $query->fetch_assoc()) {
+                if ($query) {
 
-                    //verify password; if password is valid, set a temporary cookie
-                    if ($query AND $query->num_rows > 0) {
-                        $result_row = $query->fetch_assoc();
-                        $hash = $result_row['password'];
-                        //get the id
-                        $user_id = $result_row['id'];
+                        //verify password; if password is valid, set a temporary cookie
+                        if ($query AND $query->num_rows > 0) {
+                            $result_row = $query->fetch_assoc();
+                            $hash = $result_row['password'];
+                            //get the id
+                            $user_id = $result_row['id'];
 
-                        if (password_verify($password, $hash)) {
-                            setcookie("username", $username);
-                            setcookie("user_id", $user_id);
-                            return "Success";
+                            if (password_verify($password, $hash)) {
+                                setcookie("username", $username);
+                                setcookie("user_id", $user_id);
+                                return "Success";
+                            } else {
+                                throw new DatabaseException("Incorrect Password");
+                            }
                         }
-                    }
-
-                    throw  new DatabaseException("Database Error");
+                        $query =  mysqli_fetch_array($query);
+                        $error = $this->dbConnection->error;
+                        throw  new DatabaseException("Database Error $query <br> Error: $error ");
+                } else {
+                    $error = $this->dbConnection->error;
+                    throw new DatabaseException("Query Failed, Error: $error");
                 }
             }
         } catch (DataMissing $e) {
             return $e->getMessage();
         } catch (DatabaseException $e) {
             return $e->getMessage();
-        } catch (Exception $e) {
+        }  catch (Exception $e) {
             return $e->getMessage();
         }
-
-
     }
 
 
