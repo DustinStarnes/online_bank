@@ -25,7 +25,7 @@ class TransactionIndex extends TransactionIndexView {
                 <th class='right'>Amount</th>
                 <th class='right'>Account_type</th>
                 <th class='right'>Date</th>
-<!--                <th>Edit</th>-->
+                <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@ class TransactionIndex extends TransactionIndexView {
                         <td class='right'>$amount</td>
                         <td class='right'>$account_type</td>
                         <td class='right'>$date</td>
-                       <!-- <td><a class='edit' href='", BASE_URL, "/transaction/edit/$id'>Edit</a></td> -->
+                       <td><a class='edit' href='", BASE_URL, "/transaction/edit/?id=$id'>Edit</a></td> 
                         </tr>";
                     ?>
                     <?php

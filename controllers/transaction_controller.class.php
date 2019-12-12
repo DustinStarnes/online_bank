@@ -71,8 +71,16 @@ class TransactionController
     }
 
     public function edit(){
+        $transaction = $this->transaction_model->get_transaction();
+
+        if (!$transaction) {
+            //display an error
+            $message = "There was a problem displaying Transaction.";
+            $this->error($message);
+            return;
+        }
         $view= new TransactionEdit();
-        $view->display();
+        $view->display($transaction);
     }
     public function do_edit() {
         $editTransaction = $this->transaction_model->edit_transaction();

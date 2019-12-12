@@ -60,7 +60,7 @@
 
 .top-row{
     width: 720px;
-    height: 35px;
+    min-height: 35px;
     margin: auto;
     display: flex;
     align-items: center;
@@ -73,7 +73,7 @@
 
 .middle-row{
     width: 720px;
-    height: 300px;
+    min-height: 300px;
     margin: auto;
     display: flex;
     flex-direction: column;

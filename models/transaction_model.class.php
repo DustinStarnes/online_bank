@@ -28,35 +28,80 @@ class TransactionModel {
         //$user= $_COOKIE['user'];
         $user= 1;
 
-        $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
+        try{
+            $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
 
-        //execute the query
-        $query = $this->dbConnection->query($sql);
+            $query = $this->dbConnection->query($sql);
 
-        // if the query failed, return false.
-        if (!$query){
-            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
-            return false;
+            // if the query failed, return false.
+            if (!$query){
+                throw new DatabaseException("Error: " . $sql . "<br>" . $this->dbConnection->error);
+            }
+
+            //if the query succeeded, but no transaction was found.
+            if ($query->num_rows == 0) {
+                throw new DatabaseException("Error: No Transaction found: " . $sql . "<br>" . $this->dbConnection->error);
+            }
+
+            //handle the result
+            //create an array to store all returned transactions
+            $transactions = array();
+
+            //loop through all rows in the returned recordsets
+            while ($obj = $query->fetch_object()) {
+                $transaction = new Transaction(stripslashes($obj->id), stripslashes($obj->title), stripslashes($obj->amount), stripslashes($obj->account_type), stripslashes($obj->date));
+
+                //add the transaction into the array
+                $transactions[] = $transaction;
+            }
+            return $transactions;
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function get_transaction() {
+        /* construct the sql SELECT statement in this format
+         * SELECT ...
+         * FROM ...
+         * WHERE ...
+         */
+
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user = $_COOKIE['user_id'];
+        } else {
+            $user = 1;
         }
 
-        //if the query succeeded, but no transaction was found.
-        if ($query->num_rows == 0) {
-            echo "Error: No Transaction found: " . $sql . "<br>" . $this->dbConnection->error;
-            return 0;
+        try {
+            $sql = "SELECT * FROM transactions WHERE user_id=" . $user . " AND id = " . $_GET["id"];
+
+            //execute the query
+            $query = $this->dbConnection->query($sql);
+
+            // if the query failed, return false.
+            if (!$query) {
+                throw new DatabaseException( "Error: " . $sql . "<br>" . $this->dbConnection->error);
+
+            }
+
+            //if the query succeeded, but no transaction was found.
+            if ($query->num_rows == 0) {
+                throw new DatabaseException( "Error: No Transaction found: " . $sql . "<br>" . $this->dbConnection->error);
+
+            }
+
+            //handle the result
+
+            //loop through all rows in the returned recordsets
+            while ($obj = $query->fetch_object()) {
+                $transaction = new Transaction(stripslashes($obj->id), stripslashes($obj->title), stripslashes($obj->amount), stripslashes($obj->account_type), stripslashes($obj->date));
+            }
+            return $transaction;
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
         }
-
-        //handle the result
-        //create an array to store all returned transactions
-        $transactions = array();
-
-        //loop through all rows in the returned recordsets
-        while ($obj = $query->fetch_object()) {
-            $transaction = new Transaction(stripslashes($obj->id), stripslashes($obj->title), stripslashes($obj->amount), stripslashes($obj->account_type), stripslashes($obj->date));
-
-            //add the transaction into the array
-            $transactions[] = $transaction;
-        }
-        return $transactions;
     }
 
     //find total for a user's account
@@ -100,16 +145,17 @@ class TransactionModel {
         }
 
 
-        $sql = "INSERT INTO transactions(title, user_id, account_type, amount)  VALUES (' $title', $user_id ,  '$account_type' ,  $amount  ) ";
+        try{
+            $sql = "INSERT INTO transactions(title, user_id, account_type, amount)  VALUES (' $title', $user_id ,  '$account_type' ,  $amount  ) ";
+            if ($this->dbConnection->query($sql) === TRUE) {
+                return true;
+            } else {
+                echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+                throw new DatabaseException("Error: " . $sql . "<br>" . $this->dbConnection->error);
+            }
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
 
-
-
-        if ($this->dbConnection->query($sql) === TRUE) {
-            //echo "New record created successfully";
-            return true;
-        } else {
-            //echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
-            return false;
         }
     }
 
@@ -161,7 +207,7 @@ class TransactionModel {
     public function edit_transaction()
     {
         //retrieve user inputs from the registration form
-        $id = filter_input(INPUT_POST, "id");
+        $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
         $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT);
         $sign = filter_input(INPUT_POST, "sign", FILTER_SANITIZE_STRING);
@@ -178,17 +224,20 @@ class TransactionModel {
             $user_id = 1;
         }
 
+        try {
 
-        $sql = "UPDATE transactions WHERE user_id= $id SET  title= '$title', account_type=  '$account_type' , amount= $amount  ) ";
+            $sql = "UPDATE transactions SET  title='$title', account_type= '$account_type' , amount= $amount WHERE user_id= $user_id AND id= $id ";
 
 
+            if ($this->dbConnection->query($sql) === TRUE) {
+                return true;
+            } else {
+                echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+                throw new DatabaseException("Error: " . $sql . "<br>" . $this->dbConnection->error);
+            }
 
-        if ($this->dbConnection->query($sql) === TRUE) {
-            echo "Edited successfully";
-            return true;
-        } else {
-            echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
-            return false;
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
         }
     }
 

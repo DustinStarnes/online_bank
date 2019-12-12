@@ -6,7 +6,7 @@
  * Description: 
  */
 
-class ConfrimEdit extends IndexView
+class ConfirmEdit extends IndexView
 {
 
     public function display($success)
@@ -24,7 +24,7 @@ class ConfrimEdit extends IndexView
         <?php
 
         if ($success) {
-            echo "Transaction was successful.";
+            echo "Edit was successful.";
 
 
         } else {

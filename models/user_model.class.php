@@ -109,6 +109,7 @@ class UserModel
                 //run the query
                 $query = $this->dbConnection->query($sql);
 
+
                 if ($query) {
 
                         //verify password; if password is valid, set a temporary cookie
@@ -117,11 +118,10 @@ class UserModel
                             $hash = $result_row['password'];
                             //get the id
                             $user_id = $result_row['id'];
-
                             if (password_verify($password, $hash)) {
-                                setcookie("username", $username);
-                                setcookie("user_id", $user_id);
-                                return "Success";
+                                setcookie("username", $username, 2147483647, '/');
+                                setcookie("user_id", $user_id, 2147483647,'/');
+                                return true;
                             } else {
                                 throw new DatabaseException("Incorrect Password");
                             }

@@ -16,13 +16,23 @@ class TransactionEdit extends IndexView
         ?>
         <div class="top-row"> Edit Transaction</div>
 
-        <div class="middle-row">
+        <div class="middle-row" >
 
             <?php
+
+            //display transactions six transactions per row
+
+
             if ($transaction === 0) {
                 echo "No transaction was found.<br><br><br><br><br>";
             } else {
-            //display transactions six transactions per row
+
+
+                //display transactions six transactions per row
+               // foreach ($transactions as $i => $transaction) {
+
+                    //$transaction = $transactions[0];
+
 
             $id = $transaction->getId();
             $title = $transaction->getTitle();
@@ -32,8 +42,8 @@ class TransactionEdit extends IndexView
             ?>
 
             <form method="post" action="<?= BASE_URL . "/transaction/do_edit" ?>">
-                <div><input class="text-box" type="hidden" name="id" placeholder="Transaction Name"
-                            value="<?= $id ?>" disabled/>
+                <div><input class="text-box" type="hidden" name="id" placeholder="Transaction ID"
+                            value="<?= $id ?>" />
                 </div>
                     <div><input class="text-box" type="text" name="title" placeholder="Transaction Name"
                                 value="<?= $title ?>" required/>
@@ -53,6 +63,10 @@ class TransactionEdit extends IndexView
                     </div>
                     <div><input type="submit" value="Submit" class="button"/></div>
                 </form>
+            <?php
+            }
+   // }
+            ?>
         </div>
 
         <div class="bottom-row">
@@ -64,4 +78,4 @@ class TransactionEdit extends IndexView
         //display page footer
         parent::footer();
     } //end of display method
-    }}
+    }

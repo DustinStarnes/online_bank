@@ -41,8 +41,9 @@ class UserController
         $view->display($logOut);
     }
     public function reset(){
-        if(isset($_COOKIE['user'])){
-            $user = $_COOKIE['user'];
+        echo $_COOKIE['username'];
+        if(isset($_COOKIE['username'])){
+            $user = $_COOKIE['username'];
             $view = new Reset();
             $view->display($user);
         } else {
