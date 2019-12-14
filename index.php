@@ -11,6 +11,7 @@ require_once ("application/config.php");
 //////include code in vendor/autoload.php file
 require_once ("vendor/autoload.php");
 
+
 new Dispatcher();
 ?>
 

@@ -48,11 +48,6 @@ class TransactionEdit extends IndexView
                     <div><input class="text-box" type="text" name="title" placeholder="Transaction Name"
                                 value="<?= $title ?>" required/>
                     </div>
-                    <div><input type="radio" id="deposit" name="sign" value="+" selected
-                        >
-                        <label for="deposit">Deposit</label></div>
-                    <div><input type="radio" id="withdraw" name="sign" value="-" checked>
-                        <label for="withdraw">Withdraw</label></div>
                     <div>$ <input class="text-box" type="text" name="amount" placeholder="Amount" value="<?= $amount ?>"
                                   required/></div>
                     <div>
@@ -63,6 +58,13 @@ class TransactionEdit extends IndexView
                     </div>
                     <div><input type="submit" value="Submit" class="button"/></div>
                 </form>
+                <form method="post" action="<?= BASE_URL . "/transaction/delete" ?>">
+                    <div><input class="text-box" type="hidden" name="id" placeholder="Transaction ID"
+                                value="<?= $id ?>" />
+                    </div>
+                    <div><input type="submit" value="Delete" class="button"/></div>
+                </form>
+
             <?php
             }
    // }

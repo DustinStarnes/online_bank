@@ -27,8 +27,8 @@ class UserError extends IndexView
         <!-- bottom row for links  -->
         <div class="bottom-row">
 
-                <span style="float: left">Already have an account? <a class="link" href="../../../index.php">Login</a></span>
-                <span style="float: right">&nbsp &nbsp Don't have an account? <a class="link" href="../../../index.php">Register</a></span>
+                <span style="float: left">Already have an account? <a class="link" href="<?= BASE_URL . "/user/login" ?>">Login</a></span>
+                <span style="float: right">&nbsp &nbsp Don't have an account? <a class="link" href="<?= BASE_URL . "/" ?>">Register</a></span>
 
         </div>
         <!-- page specific content ends -->

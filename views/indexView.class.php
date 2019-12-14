@@ -25,19 +25,29 @@ class IndexView
         <div class="header-banner">I211 Banking Online</div>
         <div class="navbar">
             <div class="lonks">
+                <?php
+                //if logged in
+                if(isset($_COOKIE['username'])){
+                ?>
+                    <a class="lonk" href="<?= BASE_URL . "/transaction/index" ?>">Home</a>
+                    <span> | </span>
+                    <a class="lonk" href="<?= BASE_URL . "/transaction/add_new" ?>">Withdraw & Deposit</a>
+                    <span> | </span>
+                    <a class="lonk" href="<?= BASE_URL . "/transaction/index" ?>">Balance</a>
+                    <span> | </span>
+                    <a class="lonk" href="<?= BASE_URL . "/user/reset" ?>">Reset Password</a>
+                    <span> | </span>
+                    <a class="lonk" href="<?= BASE_URL . "/user/logout" ?>">Logout</a>
+                <?php } else{
+                    //if not logged in
+                ?>
                 <a class="lonk" href="<?= BASE_URL . "/" ?>">Home</a>
                 <span> | </span>
                 <a class="lonk" href="<?= BASE_URL . "/" ?>">Register</a>
                 <span> | </span>
                 <a class="lonk" href="<?= BASE_URL . "/user/login" ?>">Login</a>
-                <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "/transaction/add_new" ?>">Withdraw & Deposit</a>
-                <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "/transaction/index" ?>">Balance</a>
-                <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "/user/reset" ?>">Reset Password</a>
-                <span> | </span>
-                <a class="lonk" href="<?= BASE_URL . "/user/logout" ?>">Logout</a>
+                <?php }
+                ?>
             </div>
         </div>
         <?php
@@ -46,6 +56,7 @@ class IndexView
     //create the page footer
     public static function footer() {
         ?>
+        <script src="../www/js/ajax_autosuggestion.js"></script>
         </body>
         </html>
         <?php

@@ -26,11 +26,13 @@ function suggest(query) {
     let xhr = new XMLHttpRequest();
 
     //open an asynchronous AJAX request
-    xhr.open("GET", 'transaction_search.class.php?q=' + query, true);
+    xhr.open("GET", 'autosuggestion?q=' + query, true);
 
     //handle server's responses
     xhr.onload = function () {
+        console.log(xhr.responseText);
         let titles = JSON.parse(xhr.responseText);
+        console.log(titles);
         displayTitles(titles);
     }
 

@@ -33,7 +33,7 @@ class Index extends IndexView
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Already have an account? <a class="link" href="/index.php?action=login">Login</a> </span>
+            <span style="float: left">Already have an account? <a class="link" href="/user/login">Login</a> </span>
         </div>
         <?php
         parent::footer();

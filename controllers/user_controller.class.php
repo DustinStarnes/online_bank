@@ -41,7 +41,6 @@ class UserController
         $view->display($logOut);
     }
     public function reset(){
-        echo $_COOKIE['username'];
         if(isset($_COOKIE['username'])){
             $user = $_COOKIE['username'];
             $view = new Reset();
@@ -52,7 +51,7 @@ class UserController
     }
     public function do_reset(){
         $do_reset = $this->user_model->reset_password();
-        $view = new ResetConfirm();
+        $view = new ResetConfirmed();
         $view->display($do_reset);
     }
     public function error($message){

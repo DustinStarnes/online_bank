@@ -25,8 +25,12 @@ class TransactionModel {
          * WHERE ...
          */
 
-        //$user= $_COOKIE['user'];
-        $user= 1;
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user = $_COOKIE['user_id'];
+        } else {
+            $user = 1;
+        }
 
         try{
             $sql = "SELECT * FROM transactions WHERE user_id=" . $user ;
@@ -105,21 +109,66 @@ class TransactionModel {
     }
 
     //find total for a user's account
-    public function get_total($user_id, $account_type){
-        //SQL select statement
-        $sql = "SELECT SUM(amount) FROM transactions WHERE user_id = " . $user_id . "AND account_type = " . $account_type ;
+    public function get_total(){
 
-        //execute the query
-        $query = $this->dbConnection->query($sql);
-
-        //if query executes
-        if ($query_row = $query->fetch_assoc()) {
-            //show total
-            echo $sql;
-
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user_id = $_COOKIE['user_id'];
         } else {
-            //if user is not in database
-            return false;
+            $user_id = 1;
+        }
+
+        //create totals array
+        $totals = [];
+
+        try {
+            //SQL select statement for Checking
+            $sql = "SELECT SUM(amount) AS total FROM transactions WHERE user_id = " . $user_id . " AND account_type = 'Checking' ";
+
+            //execute the query
+            $query = $this->dbConnection->query($sql);
+
+            //get object
+           $obj = $query->fetch_object()->total;
+
+            //if query executes
+            if (!$query) {
+                //if query fails
+                throw new DatabaseException("Error: Database Error: " . $sql . "<br>" . $this->dbConnection->error);
+            } if($obj==null){
+                //if there are no transaction entries total is 0
+                array_push($totals, 0);
+
+            } else {
+                //add total
+                array_push($totals, $obj);
+            }
+
+            //SQL select statement for Savings
+            $sql = "SELECT SUM(amount) AS total FROM transactions WHERE user_id = " . $user_id . " AND account_type = 'Savings' ";
+
+            //execute the query
+            $query = $this->dbConnection->query($sql);
+
+            //get object
+            $obj = $query->fetch_object()->total;
+
+            //if query executes
+            if (!$query) {
+                //if query fails
+                throw new DatabaseException("Error: Database Error: " . $sql . "<br>" . $this->dbConnection->error);
+            } if($obj==null){
+                //if there are no transaction entries total is 0
+                array_push($totals, 0);
+
+            } else {
+                //add total
+                array_push($totals, $obj);
+            }
+
+            return $totals;
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
         }
 
     }
@@ -129,7 +178,8 @@ class TransactionModel {
     {
         //retrieve user inputs from the registration form
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
-        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT);
+        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT,
+            FILTER_FLAG_ALLOW_FRACTION);
         $sign = filter_input(INPUT_POST, "sign", FILTER_SANITIZE_STRING);
         $account_type = filter_input(INPUT_POST, 'account_type', FILTER_SANITIZE_STRING);
 
@@ -209,13 +259,10 @@ class TransactionModel {
         //retrieve user inputs from the registration form
         $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
         $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_STRING);
-        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT);
-        $sign = filter_input(INPUT_POST, "sign", FILTER_SANITIZE_STRING);
+        $amount = filter_input(INPUT_POST, "amount", FILTER_SANITIZE_NUMBER_FLOAT,
+            FILTER_FLAG_ALLOW_FRACTION);
         $account_type = filter_input(INPUT_POST, 'account_type', FILTER_SANITIZE_STRING);
 
-        if($sign == "-") {
-            $amount = -1 * $amount;
-        }
 
         //get user's ID
         if (isset($_COOKIE['user_id'])) {
@@ -227,6 +274,35 @@ class TransactionModel {
         try {
 
             $sql = "UPDATE transactions SET  title='$title', account_type= '$account_type' , amount= $amount WHERE user_id= $user_id AND id= $id ";
+
+
+            if ($this->dbConnection->query($sql) === TRUE) {
+                return true;
+            } else {
+                echo "Error: " . $sql . "<br>" . $this->dbConnection->error;
+                throw new DatabaseException("Error: " . $sql . "<br>" . $this->dbConnection->error);
+            }
+
+        } catch (DatabaseException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function delete_transaction()
+    {
+        //retrieve user inputs from the registration form
+        $id = filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
+
+        //get user's ID
+        if (isset($_COOKIE['user_id'])) {
+            $user_id = $_COOKIE['user_id'];
+        } else {
+            $user_id = 1;
+        }
+
+        try {
+
+            $sql = "DELETE FROM transactions WHERE user_id= $user_id AND id= $id ";
 
 
             if ($this->dbConnection->query($sql) === TRUE) {

@@ -119,8 +119,9 @@ class UserModel
                             //get the id
                             $user_id = $result_row['id'];
                             if (password_verify($password, $hash)) {
-                                setcookie("username", $username, 2147483647, '/');
-                                setcookie("user_id", $user_id, 2147483647,'/');
+                                setcookie("username", $username, time()+60*30, '/');
+                                setcookie("user_id", $user_id, time()+60*30,'/');
+                                $_COOKIE['username'] = $username;
                                 return true;
                             } else {
                                 throw new DatabaseException("Incorrect Password");
@@ -151,6 +152,7 @@ class UserModel
 
         if (isset($_COOKIE['username'])) {
             unset($_COOKIE['username']);
+            setcookie('username', '', time() - 3600, '/');
             return true;
         } else {
             return false;

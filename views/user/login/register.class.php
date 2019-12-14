@@ -36,7 +36,7 @@ class Register extends IndexView
 
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">You have attempted to register <a class="link" href="/index.php?action=login">Login</a> </span>
+            <span style="float: left">You have attempted to register <a class="link" href="<?= BASE_URL . "/user/login" ?>">Login</a> </span>
         </div>
         <?php
 

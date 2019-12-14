@@ -32,6 +32,11 @@
     align-items: center;
     background-color: #9FBA8F;
 }
+
+.searchBar-holder form {
+    display:flex;
+}
+
 .searchBar{
     height: 27px;
     width: 275px;
@@ -85,7 +90,14 @@
     color: white;
 }
 
+.totals p {
+    margin: 5px;
+}
 
+.totals {
+    padding-bottom:15px;
+    text-align: center;
+}
 
 .bottom-row{
     width: 720px;
@@ -154,6 +166,10 @@ td{
     color: white;
 }
 /* styles for the suggestion div block and the spans in it*/
+
+#searchbar{
+    position:relative;
+}
 #suggestionDiv {
     position: absolute;
     padding: 0;
@@ -180,22 +196,22 @@ td{
     background-color: #F5DEB3;
 }
 
-#searchbar input{
+#searchtextbox input{
     border: none;
 }
 
-#searchbar input[type="text"] {
+#searchtextbox input[type="text"] {
     width: 155px;
     padding-left: 8px;
     font-size: 0.8em;
     color: #444;
 }
 
-#searchbar input[type="text"]:focus {
+#searchtextbox input[type="text"]:focus {
     outline: none;
 }
 
-#searchbar input[type="submit"]{
+#searchtextbox input[type="submit"]{
     border-left: 1px solid #fff;
     padding: 0;
     width: 24px;
@@ -204,7 +220,7 @@ td{
     background-color: #eee;
 }
 
-#searchbar input[type="submit"]:hover{
+#searchtextbox input[type="submit"]:hover{
     border-left: 1px solid #999;
     background-color: #c7f2fd;
 }

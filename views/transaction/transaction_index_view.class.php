@@ -14,12 +14,14 @@ class TransactionIndexView extends IndexView {
         <!--create the search bar -->
         <div id="searchbar" class="searchBar-holder">
             <form method="get" action="<?= BASE_URL ?>/transaction/search">
-
-                    <input class="searchBar" type="text" name="query-terms" id="searchtextbox searchBar" placeholder="Search transactions" autocomplete="off" onkeyup="handleKeyUp(event)">
+                    <div id="searchbar">
+                        <input class="searchBar" type="text" name="query-terms" id="searchtextbox" placeholder="Search transactions" autocomplete="off" onkeyup="handleKeyUp(event)">
+                        <div id="suggestionDiv"></div>
+                    </div>
                     <input class="searchBtn" type="submit" value="Go" />
 
             </form>
-            <div id="suggestionDiv"></div>
+
         </div>
         <?php
     }

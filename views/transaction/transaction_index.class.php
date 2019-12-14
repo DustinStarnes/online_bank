@@ -11,14 +11,19 @@ class TransactionIndex extends TransactionIndexView {
      * them in a grid.
      */
 
-    public function display($transactions) {
+    public function display($transactions, $totals) {
         //display page header
         parent::header("List All Transactions");
         ?>
         <div class="top-row"> Transactions for user </div>
 
         <div class="middle-row">
-        <table class="table-container">
+            <div class="totals">
+                <p>Checking Total: $<?php echo $totals[0] ?></p>
+                <p>Savings Total: $<?php echo $totals[1] ?></p>
+            </div>
+
+            <table class="table-container">
             <thead>
             <tr>
                 <th class='right'>Title</th>
@@ -30,7 +35,7 @@ class TransactionIndex extends TransactionIndexView {
             </thead>
             <tbody>
             <?php
-            if ($transactions === 0) {
+            if ($transactions == 0) {
                 echo "No transaction was found.<br><br><br><br><br>";
             } else {
                 //display transactions six transactions per row
@@ -44,7 +49,7 @@ class TransactionIndex extends TransactionIndexView {
 
                     echo "<tr>
                         <td class='right'>$title</td>
-                        <td class='right'>$amount</td>
+                        <td class='right'>$$amount</td>
                         <td class='right'>$account_type</td>
                         <td class='right'>$date</td>
                        <td><a class='edit' href='", BASE_URL, "/transaction/edit/?id=$id'>Edit</a></td> 

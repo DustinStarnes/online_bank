@@ -32,7 +32,7 @@ return array(
     'TransactionIndex' => $baseDir . '/views/transaction/transaction_index.class.php',
     'TransactionIndexView' => $baseDir . '/views/transaction/transaction_index_view.class.php',
     'TransactionModel' => $baseDir . '/models/transaction_model.class.php',
-    'TransactionSearch' => $baseDir . '/views/transaction/transaction_search.class.php',
+    'TransactionSearch' => $baseDir . '/views/transaction/search/transaction_search.class.php',
     'UserController' => $baseDir . '/controllers/user_controller.class.php',
     'UserError' => $baseDir . '/views/user/error/user_error.class.php',
     'UserModel' => $baseDir . '/models/user_model.class.php',

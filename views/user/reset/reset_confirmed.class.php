@@ -30,11 +30,11 @@ class ResetConfirmed extends IndexView
 
 
         ?>
-
+        </div>
         <!-- bottom row of page header -->
         <div class="bottom-row">
-            <span style="float: left">Want to log out? <a class="link" href="../../../index.php">Logout</a></span>
-            <span style="float: right">Don't have an account? <a class="link" href="../../../index.php">Register</a></span>
+            <span style="float: left">Want to log out? <a class="link" href="<?= BASE_URL . "/user/logout" ?>">Logout</a></span>
+            <span style="float: right">Don't have an account? <a class="link" href="<?= BASE_URL . "/" ?>">Register</a></span>
         </div>
         <?php
 

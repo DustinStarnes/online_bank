@@ -29,7 +29,7 @@ class Reset extends IndexView
 
         </form>
 
-
+        </div>
         <div class="bottom-row">
             <span style="float: left"></a></span>
             <span style="float: right"></span>
